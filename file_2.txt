@@ -1,0 +1,44 @@
+GROUP BY:
+
+snack1
+SELECT COUNT(`id`) AS `numero_iscritti`, YEAR( `enrolment_date`) AS `anno`  
+FROM `students`
+WHERE `enrolment_date`
+GROUP BY YEAR( `enrolment_date`);
+
+snack2
+SELECT COUNT(*) AS `numero_insegnanti`, `office_address` AS `indirizzo_ufficio`
+FROM `teachers`
+GROUP BY `office_address`;
+
+snack3
+SELECT ROUND(AVG(`vote`),2) AS`media_voti`, `exam_id`
+FROM `exam_student`
+GROUP BY  `exam_id`;
+
+snack4
+SELECT COUNT(*), `department_id`
+FROM `degrees`
+GROUP BY `department_id`;
+
+
+Join:
+
+snack1
+SELECT `students`.`name` AS`nome`,`students`.`surname`
+FROM `students`
+JOIN `degrees` ON `degrees`.`id`= `students`.`degree_id`
+WHERE `degrees`.`name`='Corso di Laurea in Economia';
+
+snack2
+SELECT * 
+FROM `degrees`
+JOIN `departments` ON `departments`.`id`= `degrees`.`department_id`
+WHERE `departments`.`name` = 'Dipartimento di Neuroscienze';
+
+snack3
+SELECT `courses`.`name`
+FROM `courses`
+JOIN `course_teacher`ON `courses`.`id`= `course_teacher`.`course_id`
+JOIN `teachers`ON `teachers`.`id` = `course_teacher`.`teacher_id`
+WHERE `teachers`.`id`= 44;
